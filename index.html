@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Furniro — Home</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#333333;
+      --muted:#898989;
+      --line:#E7E7E7;
+      --brand:#B88E2F;           /* altın */
+      --card:#F4F5F7;            /* ürün arka planı */
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text); background:var(--bg);
+      font-family:"Nunito Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+      line-height:1.45;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Container */
+    .container{width:min(1200px, 92vw); margin-inline:auto}
+
+    /* Header */
+    .header{position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--line)}
+    .header-inner{display:flex; align-items:center; justify-content:space-between; gap:24px; padding:18px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; font-size:22px}
+    .brand img{width:28px}
+    nav ul{display:flex; list-style:none; gap:36px; padding:0; margin:0}
+    nav a{font-weight:600; color:#1e1e1e}
+    .icons{display:flex; align-items:center; gap:18px}
+    .icons img{width:22px; height:22px; object-fit:contain; opacity:.9}
+    .icons img:hover{opacity:1}
+
+    /* Hero */
+    .hero{
+      position:relative; isolation:isolate;
+      min-height:620px;
+      background:url("images/scandinavian-interior-mockup-wall-decal-background 1.png") center/cover no-repeat;
+    }
+    .hero-card{
+      position:relative;
+      width:min(500px, 84vw);
+      margin-left:auto; margin-right:clamp(16px, 6vw, 80px);
+      translate:0 90px;
+      background:#F9F1E7; border-radius:10px; padding:36px 34px;
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
+    }
+    .tag{letter-spacing:.18em; text-transform:uppercase; font-size:12px; color:#8A7F6A; font-weight:700}
+    .hero h1{margin:8px 0 10px; font-size:38px; line-height:1.15; color:#3A3A3A}
+    .hero p{color:#7A7A7A; margin:0 0 22px; font-size:14px}
+    .btn{display:inline-block; padding:14px 26px; background:var(--brand); color:#fff; border-radius:4px; font-weight:700; box-shadow:0 4px 0 rgba(0,0,0,.04)}
+    .btn:hover{filter:brightness(.96)}
+
+    /* Sections */
+    .section{padding:80px 0}
+    .section h2{font-size:24px; text-align:center; margin:0 0 10px}
+    .section p.lead{color:var(--muted); text-align:center; margin:0 0 28px}
+
+    /* Browse The Range */
+    .range-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+    .range-card{border-radius:8px; overflow:hidden; background:#fff}
+    .range-card img{aspect-ratio:4/3; width:100%; height:100%; object-fit:cover}
+    .range-card .caption{padding:12px; text-align:center; font-weight:700; color:#666}
+
+    /* Our Products */
+    .products-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px}
+    .product{background:var(--card); border-radius:10px; overflow:hidden; display:flex; flex-direction:column}
+    .product .photo{background:#e9e9e9; aspect-ratio:4/3}   /* NETLİK: sabit oran */
+    .product .photo img{width:100%; height:100%; object-fit:cover}
+    .product .meta{padding:16px 18px}
+    .p-title{font-size:18px; font-weight:700; margin:2px 0 4px}
+    .p-sub{font-size:14px; color:#898989; margin:0 0 10px}
+    .p-prices{display:flex; align-items:center; gap:8px}
+    .price{font-weight:700}
+    .old{color:#B0B0B0; text-decoration:line-through}
+    .product .photo-wrap{position:relative}
+    .badge{position:absolute; top:12px; right:12px; background:#E97171; color:#fff; font-size:12px; padding:6px 8px; border-radius:50px; font-weight:700}
+    .badge.new{background:#2EC1AC}
+    .product .actions{position:absolute; inset:auto 14px 14px 14px; display:flex; gap:10px; justify-content:center; opacity:0; transition:.2s}
+    .product:hover .actions{opacity:1}
+    .chip{background:#fff; border-radius:4px; padding:10px 12px; font-size:12px; font-weight:700; box-shadow:0 2px 10px rgba(0,0,0,.08)}
+    .more-wrap{display:flex; justify-content:center; margin-top:22px}
+    .btn-ghost{border:1px solid var(--brand); color:var(--brand); background:transparent; padding:10px 26px; border-radius:4px; font-weight:700}
+
+    /* Inspiration  */
+    .insp{background:#FFF3E3; padding:48px 0}
+    .insp-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:22px; align-items:stretch}
+    .insp-card{position:relative; overflow:hidden; border-radius:8px; height:480px}  /* sabit yükseklik */
+    .insp-card img{width:100%; height:100%; object-fit:cover; object-position:center} /* germeden kırp */
+    .insp-overlay{position:absolute; left:18px; bottom:18px; background:#fff; border-radius:8px; padding:16px 18px; width:min(260px,86%); box-shadow:0 10px 20px rgba(0,0,0,.08)}
+    .insp-overlay small{color:#8D8D8D; font-weight:700; letter-spacing:.12em}
+    .insp-overlay h3{margin:6px 0 8px; font-size:22px}
+    .arrow{display:inline-grid; place-items:center; width:38px; height:38px; border-radius:6px; background:var(--brand); color:#fff; font-weight:800}
+
+    /* Hashtag Gallery */
+    .hashtag h3{text-align:center; margin-bottom:8px}
+    .hashtag p{text-align:center; color:var(--muted); margin-top:0}
+    .masonry{margin-top:18px; columns:4 220px; column-gap:16px}
+    .masonry img{width:100%; height:auto; border-radius:8px; margin:0 0 16px; break-inside:avoid}  
+    
+
+    /* Footer */
+    footer{border-top:1px solid var(--line); padding:46px 0 28px}
+    .footer-grid{display:grid; gap:28px; grid-template-columns:1.4fr 1fr 1fr 1fr}
+    .f-brand{color:#9F9F9F}
+    .f-brand img{width:22px; vertical-align:-4px; margin-right:6px}
+    .f-title{font-weight:700; color:#9F9F9F; margin:0 0 16px}
+    .f-col a{display:block; padding:7px 0; color:#000}
+    .newsletter{display:flex; gap:10px}
+    .newsletter input{border:none; border-bottom:1px solid #000; padding:8px 2px; outline:none; width:100%; background:transparent}
+    .newsletter button{border:none; border-bottom:1px solid #000; background:transparent; padding:8px 0; font-weight:700}
+    .copyright{margin-top:28px; color:#9F9F9F; font-size:14px; border-top:1px solid var(--line); padding-top:18px}
+
+    /* Responsive */
+    @media (max-width:1024px){
+      .products-grid{grid-template-columns:repeat(3,1fr)}
+      .insp-card{height:420px}
+      .hero{min-height:560px}
+    }
+    @media (max-width:760px){
+      nav{display:none}
+      .hero-card{margin-inline:16px; translate:0 40px}
+      .range-grid{grid-template-columns:1fr}
+      .products-grid{grid-template-columns:1fr 1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .insp-card{height:320px}
+    }
+    @media (max-width:480px){
+      .products-grid{grid-template-columns:1fr}
+      .masonry{columns:2 140px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <img src="images/Meubel House_Logos-05.png" alt="Furniro logo">
+        <span>Furniro</span>
+      </a>
+
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="icons" role="group" aria-label="quick actions">
+        <img src="images/akar-icons_search.png" alt="Search">
+        <img src="images/mdi_account-alert-outline.png" alt="Account">
+        <img src="images/akar-icons_heart.png" alt="Wishlist">
+        <img src="images/ant-design_shopping-cart-outlined.png" alt="Cart">
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-card" role="region" aria-label="New collection">
+        <div class="tag">New Arrival</div>
+        <h1>Discover Our<br>New Collection</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</p>
+        <a class="btn" href="#">BUY NOW</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BROWSE THE RANGE -->
+  <section class="section">
+    <div class="container">
+      <h2>Browse The Range</h2>
+      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+      <div class="range-grid">
+        <article class="range-card">
+          <img src="images/image 100.png" alt="Dining">
+          <div class="caption">Dining</div>
+        </article>
+        <article class="range-card">
+          <img src="images/image 101.png" alt="Living">
+          <div class="caption">Living</div>
+        </article>
+        <article class="range-card">
+          <img src="images/image 106.png" alt="Bedroom">
+          <div class="caption">Bedroom</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR PRODUCTS -->
+  <section class="section">
+    <div class="container">
+      <h2>Our Products</h2>
+
+      <div class="products-grid">
+        <!-- 1 -->
+        <article class="product">
+          <div class="photo-wrap">
+            <span class="badge">-30%</span>
+            <div class="photo"><img src="images/image 1.png" alt="Syltherine"></div>
+            <div class="actions">
+              <button class="chip">Add to cart</button>
+              <span class="chip">Share</span>
+              <span class="chip">Compare</span>
+              <span class="chip">Like</span>
+            </div>
+          </div>
+          <div class="meta">
+            <div class="p-title">Syltherine</div>
+            <div class="p-sub">Stylish cafe chair</div>
+            <div class="p-prices"><span class="price">Rp 2.500.000</span> <span class="old">Rp 3.500.000</span></div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="product">
+          <div class="photo-wrap">
+            <div class="photo"><img src="images/image 2.png" alt="Leviosa"></div>
+          </div>
+          <div class="meta">
+            <div class="p-title">Leviosa</div>
+            <div class="p-sub">Stylish cafe chair</div>
+            <div class="p-prices"><span class="price">Rp 2.500.000</span></div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="product">
+          <div class="photo-wrap">
+            <span class="badge">-50%</span>
+            <div class="photo"><img src="images/image 3.png" alt="Lolito sofa"></div>
+          </div>
+          <div class="meta">
+            <div class="p-title">Lolito</div>
+            <div class="p-sub">Luxury big sofa</div>
+            <div class="p-prices"><span class="price">Rp 7.000.000</span> <span class="old">Rp 14.000.000</span></div>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="product">
+          <div class="photo-wrap">
+            <span class="badge new">New</span>
+            <div class="photo"><img src="images/image 8.png" alt="Respira"></div>
+          </div>
+          <div class="meta">
+            <div class="p-title">Respira</div>
+            <div class="p-sub">Outdoor bar table and stool</div>
+            <div class="p-prices"><span class="price">Rp 500.000</span></div>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="product">
+          <div class="photo-wrap">
+            <div class="photo"><img src="images/Image 5.png" alt="Grifo lamp"></div>
+          </div>
+          <div class="meta">
+            <div class="p-title">Grifo</div>
+            <div class="p-sub">Night lamp</div>
+            <div class="p-prices"><span class="price">Rp 1.500.000</span></div>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="product">
+          <div class="photo-wrap">
+            <span class="badge new">New</span>
+            <div class="photo"><img src="images/image 6.png" alt="Muggo"></div>
+          </div>
+          <div class="meta">
+            <div class="p-title">Muggo</div>
+            <div class="p-sub">Small mug</div>
+            <div class="p-prices"><span class="price">Rp 150.000</span></div>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="product">
+          <div class="photo-wrap">
+            <span class="badge">-50%</span>
+            <div class="photo"><img src="images/image 7.png" alt="Pingky"></div>
+          </div>
+          <div class="meta">
+            <div class="p-title">Pingky</div>
+            <div class="p-sub">Cute bed set</div>
+            <div class="p-prices"><span class="price">Rp 7.000.000</span> <span class="old">Rp 14.000.000</span></div>
+          </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="product">
+          <div class="photo-wrap">
+            <span class="badge new">New</span>
+            <div class="photo"><img src="images/image 8.png" alt="Potty"></div>
+          </div>
+          <div class="meta">
+            <div class="p-title">Potty</div>
+            <div class="p-sub">Minimalist flower pot</div>
+            <div class="p-prices"><span class="price">Rp 500.000</span></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="more-wrap">
+        <button class="btn-ghost">Show More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSPIRATION -->
+  <section class="insp">
+    <div class="container">
+      <div class="insp-grid">
+        <div class="insp-card">
+          <img src="images/Rectangle 24.png" alt="Room inspiration 1">
+        </div>
+        <div class="insp-card">
+          <img src="images/Images.png" alt="Inner Peace room">
+          <div class="insp-overlay">
+            <small>01 — Bed Room</small>
+            <h3>Inner Peace</h3>
+            <span class="arrow">›</span>
+          </div>
+        </div>
+        <div class="insp-card">
+          <img src="images/Rectangle 26.png" alt="Room inspiration 3">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HASHTAG GALLERY -->
+  <section class="section hashtag">
+    <div class="container">
+      <h3>Share your setup with</h3>
+      <h2>#FuniroFurniture</h2>
+
+      <div class="masonry">
+        <img src="images/Image.png" alt="">
+        <img src="images/Rectangle 24.png" alt="">
+        <!-- 'Rectangle 25' çok ince ve bulanık durduğu için göstermiyoruz (istersen ekle) -->
+        <img src="images/image 100.png" alt="">
+        <img src="images/image 101.png" alt="">
+        <img src="images/image 106.png" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="f-col">
+          <div class="f-brand">
+            <img src="images/Meubel House_Logos-05.png" alt="logo"> Furniro.
+          </div>
+          <p style="color:#9F9F9F; max-width:260px">
+            400 University Drive Suite 200 Coral Gables,<br> FL 33134 USA
+          </p>
+        </div>
+
+        <div class="f-col">
+          <div class="f-title">Links</div>
+          <a href="#">Home</a>
+          <a href="#">Shop</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </div>
+
+        <div class="f-col">
+          <div class="f-title">Help</div>
+          <a href="#">Payment Options</a>
+          <a href="#">Returns</a>
+          <a href="#">Privacy Policies</a>
+        </div>
+
+        <div class="f-col">
+          <div class="f-title">Newsletter</div>
+          <form class="newsletter" onsubmit="event.preventDefault()">
+            <input type="email" placeholder="Enter Your Email Address" aria-label="email">
+            <button type="submit">SUBSCRIBE</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="copyright">2023 Furniro. All rights reserved</div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
